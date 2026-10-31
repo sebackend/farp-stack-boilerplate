@@ -8,6 +8,7 @@
  * Raw values live on :root / .dark; @theme maps them to Tailwind utilities.
  */
 :root {
+  color-scheme: light;
   --background: #f2f3f0;
   --foreground: #111111;
   --card: #ffffff;
@@ -48,6 +49,7 @@
 }
 
 .dark {
+  color-scheme: dark;
   --background: #111111;
   --foreground: #ffffff;
   --card: #1a1a1a;

@@ -74,16 +74,16 @@ export default function TaskForm({ task, onClose }: TaskFormProps) {
 
   return (
     <div className="fixed inset-0 bg-black/40 flex items-center justify-center z-50 px-4">
-      <div className="bg-white rounded-2xl shadow-xl w-full max-w-md p-6">
-        <h2 className="text-lg font-semibold text-gray-900 mb-5">
+      <div className="bg-card text-card-foreground rounded-2xl shadow-xl w-full max-w-md p-6">
+        <h2 className="text-lg font-semibold text-foreground mb-5">
           {isEditing ? "Edit task" : "New task"}
         </h2>
 
         <form onSubmit={handleSubmit} className="space-y-4">
           {/* Title */}
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1.5">
-              Title <span className="text-red-500">*</span>
+            <label className="block text-sm font-medium text-foreground mb-1.5">
+              Title <span className="text-destructive">*</span>
             </label>
             <input
               type="text"
@@ -91,14 +91,14 @@ export default function TaskForm({ task, onClose }: TaskFormProps) {
               onChange={(e) => setTitle(e.target.value)}
               placeholder="Task name"
               maxLength={200}
-              className="w-full px-3.5 py-2.5 rounded-lg border border-gray-300 text-sm
-                         focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              className="w-full px-3.5 py-2.5 rounded-lg border border-input bg-background text-foreground text-sm
+                         focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
             />
           </div>
 
           {/* Description */}
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1.5">
+            <label className="block text-sm font-medium text-foreground mb-1.5">
               Description
             </label>
             <textarea
@@ -107,22 +107,22 @@ export default function TaskForm({ task, onClose }: TaskFormProps) {
               placeholder="Optional description..."
               rows={3}
               maxLength={2000}
-              className="w-full px-3.5 py-2.5 rounded-lg border border-gray-300 text-sm
-                         focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent
+              className="w-full px-3.5 py-2.5 rounded-lg border border-input bg-background text-foreground text-sm
+                         focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent
                          resize-none"
             />
           </div>
 
           {/* Status */}
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1.5">
+            <label className="block text-sm font-medium text-foreground mb-1.5">
               Status
             </label>
             <select
               value={status}
               onChange={(e) => setStatus(e.target.value as TaskStatus)}
-              className="w-full px-3.5 py-2.5 rounded-lg border border-gray-300 text-sm
-                         focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              className="w-full px-3.5 py-2.5 rounded-lg border border-input bg-background text-foreground text-sm
+                         focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
             >
               {(Object.keys(STATUS_LABELS) as TaskStatus[]).map((s) => (
                 <option key={s} value={s}>
@@ -135,14 +135,14 @@ export default function TaskForm({ task, onClose }: TaskFormProps) {
           {/* Priority + Due date */}
           <div className="grid grid-cols-2 gap-3">
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1.5">
+              <label className="block text-sm font-medium text-foreground mb-1.5">
                 Priority
               </label>
               <select
                 value={priority}
                 onChange={(e) => setPriority(e.target.value as TaskPriority)}
-                className="w-full px-3.5 py-2.5 rounded-lg border border-gray-300 text-sm
-                           focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                className="w-full px-3.5 py-2.5 rounded-lg border border-input bg-background text-foreground text-sm
+                           focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
               >
                 {(Object.keys(PRIORITY_LABELS) as TaskPriority[]).map((p) => (
                   <option key={p} value={p}>
@@ -152,22 +152,22 @@ export default function TaskForm({ task, onClose }: TaskFormProps) {
               </select>
             </div>
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1.5">
+              <label className="block text-sm font-medium text-foreground mb-1.5">
                 Due date
               </label>
               <input
                 type="date"
                 value={dueDate}
                 onChange={(e) => setDueDate(e.target.value)}
-                className="w-full px-3.5 py-2.5 rounded-lg border border-gray-300 text-sm
-                           focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                className="w-full px-3.5 py-2.5 rounded-lg border border-input bg-background text-foreground text-sm
+                           focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
               />
             </div>
           </div>
 
           {/* Error */}
           {error && (
-            <div className="rounded-lg bg-red-50 border border-red-200 px-4 py-3 text-sm text-red-700">
+            <div className="rounded-lg bg-error px-4 py-3 text-sm text-error-foreground">
               {error}
             </div>
           )}
@@ -177,16 +177,16 @@ export default function TaskForm({ task, onClose }: TaskFormProps) {
             <button
               type="button"
               onClick={onClose}
-              className="flex-1 px-4 py-2.5 rounded-lg border border-gray-300 text-sm font-medium
-                         text-gray-700 hover:bg-gray-50 transition"
+              className="flex-1 px-4 py-2.5 rounded-lg border border-input text-sm font-medium
+                         text-foreground hover:bg-muted transition"
             >
                Cancel
             </button>
             <button
               type="submit"
               disabled={isLoading}
-              className="flex-1 px-4 py-2.5 rounded-lg bg-blue-600 hover:bg-blue-700
-                         disabled:bg-blue-400 text-white text-sm font-semibold transition"
+              className="flex-1 px-4 py-2.5 rounded-lg bg-primary hover:opacity-90
+                         disabled:opacity-50 text-primary-foreground text-sm font-semibold transition"
             >
               {isLoading ? "Saving..." : isEditing ? "Save" : "Create"}
             </button>

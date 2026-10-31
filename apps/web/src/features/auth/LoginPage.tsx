@@ -47,22 +47,22 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 flex items-center justify-center px-4">
+    <div className="min-h-screen bg-background flex items-center justify-center px-4">
       <div className="w-full max-w-md">
         {/* Logo / Title */}
         <div className="text-center mb-8">
-          <h1 className="text-3xl font-bold text-gray-900">Task Manager</h1>
-          <p className="mt-2 text-sm text-gray-500">Sign in to continue</p>
+          <h1 className="text-3xl font-bold text-foreground">Task Manager</h1>
+          <p className="mt-2 text-sm text-muted-foreground">Sign in to continue</p>
         </div>
 
         {/* Card */}
-        <div className="bg-white rounded-2xl shadow-sm border border-gray-200 p-8">
+        <div className="bg-card text-card-foreground rounded-2xl shadow-sm border border-border p-8">
           <form onSubmit={handleSubmit} className="space-y-5">
             {/* Email */}
             <div>
               <label
                 htmlFor="email"
-                className="block text-sm font-medium text-gray-700 mb-1.5"
+                className="block text-sm font-medium text-foreground mb-1.5"
               >
                 Email
               </label>
@@ -74,9 +74,9 @@ export default function LoginPage() {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="admin@example.com"
-                className="w-full px-3.5 py-2.5 rounded-lg border border-gray-300 text-sm
-                           focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent
-                           placeholder:text-gray-400 transition"
+                className="w-full px-3.5 py-2.5 rounded-lg border border-input bg-background text-foreground text-sm
+                           focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent
+                           placeholder:text-muted-foreground transition"
               />
             </div>
 
@@ -84,7 +84,7 @@ export default function LoginPage() {
             <div>
               <label
                 htmlFor="password"
-                className="block text-sm font-medium text-gray-700 mb-1.5"
+                className="block text-sm font-medium text-foreground mb-1.5"
               >
                 Password
               </label>
@@ -96,15 +96,15 @@ export default function LoginPage() {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder="••••••••"
-                className="w-full px-3.5 py-2.5 rounded-lg border border-gray-300 text-sm
-                           focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent
-                           placeholder:text-gray-400 transition"
+                className="w-full px-3.5 py-2.5 rounded-lg border border-input bg-background text-foreground text-sm
+                           focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent
+                           placeholder:text-muted-foreground transition"
               />
             </div>
 
             {/* Error */}
             {errorMsg && (
-              <div className="rounded-lg bg-red-50 border border-red-200 px-4 py-3 text-sm text-red-700">
+              <div className="rounded-lg bg-error px-4 py-3 text-sm text-error-foreground">
                 {errorMsg}
               </div>
             )}
@@ -113,9 +113,9 @@ export default function LoginPage() {
             <button
               type="submit"
               disabled={isLoading}
-              className="w-full bg-blue-600 hover:bg-blue-700 disabled:bg-blue-400
-                         text-white font-semibold py-2.5 rounded-lg text-sm
-                         transition focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+              className="w-full bg-primary hover:opacity-90 disabled:opacity-50
+                         text-primary-foreground font-semibold py-2.5 rounded-lg text-sm
+                         transition focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-card"
             >
               {isLoading ? "Signing in..." : "Sign in"}
             </button>

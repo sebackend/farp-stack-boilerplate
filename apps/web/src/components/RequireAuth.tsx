@@ -30,8 +30,8 @@ export default function RequireAuth({ children }: RequireAuthProps) {
 
   if (!user && (isLoading || isFetching)) {
     return (
-      <div className="min-h-screen bg-gray-50 flex items-center justify-center px-4">
-        <p className="text-sm text-gray-500">Verifying session...</p>
+      <div className="min-h-screen bg-background flex items-center justify-center px-4">
+        <p className="text-sm text-muted-foreground">Verifying session...</p>
       </div>
     );
   }
