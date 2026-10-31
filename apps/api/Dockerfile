@@ -1,5 +1,5 @@
 # ─── Stage 1: dependencies ────────────────────────────────────────────────────
-FROM python:3.13-slim AS builder
+FROM python:3.15-slim AS builder
 
 COPY --from=ghcr.io/astral-sh/uv:0.12.17 /uv /usr/local/bin/uv
 
@@ -18,7 +18,7 @@ COPY apps/api/alembic ./alembic
 COPY apps/api/alembic.ini ./alembic.ini
 
 # ─── Stage 2: production ──────────────────────────────────────────────────────
-FROM python:3.13-slim AS runner
+FROM python:3.15-slim AS runner
 
 ENV APP_ENV=production \
     PATH="/app/.venv/bin:$PATH" \
