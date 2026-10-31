@@ -1,0 +1,26 @@
+{
+  "name": "@repo/shared",
+  "version": "0.0.1",
+  "private": true,
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "default": "./dist/index.js"
+    }
+  },
+  "scripts": {
+    "generate": "openapi-typescript openapi.json -o src/generated/api.ts --default-non-nullable false",
+    "build": "tsc -p tsconfig.json",
+    "dev": "tsc -p tsconfig.json --watch",
+    "lint": "eslint src --ignore-pattern src/generated"
+  },
+  "devDependencies": {
+    "@repo/tsconfig": "workspace:*",
+    "openapi-typescript": "^7.13.0",
+    "typescript": "^6.0.3"
+  }
+}

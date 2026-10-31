@@ -1,0 +1,17 @@
+node_modules
+**/node_modules
+.git
+.turbo
+coverage
+dist
+**/dist
+**/.vite
+.env
+*.log
+*.tsbuildinfo
+**/*.tsbuildinfo
+**/.venv
+**/__pycache__
+**/.pytest_cache
+**/.mypy_cache
+**/.ruff_cache

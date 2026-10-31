@@ -1,0 +1,17 @@
+.env
+node_modules
+dist
+.turbo
+coverage
+*.log
+*.tsbuildinfo
+
+# Python
+.venv
+__pycache__
+*.pyc
+.pytest_cache
+.mypy_cache
+.ruff_cache
+.coverage
+htmlcov

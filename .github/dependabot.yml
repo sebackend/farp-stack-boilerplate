@@ -1,0 +1,83 @@
+version: 2
+updates:
+  - package-ecosystem: npm
+    directory: "/"
+    schedule:
+      interval: monthly
+      day: monday
+      time: "08:00"
+      timezone: "UTC"
+    open-pull-requests-limit: 3
+    labels:
+      - dependencies
+    commit-message:
+      prefix: chore
+      include: scope
+    groups:
+      npm-all-updates:
+        update-types:
+          - major
+          - minor
+          - patch
+    ignore:
+      - dependency-name: "node"
+      # typescript-eslint does not support TypeScript 7 yet.
+      - dependency-name: "typescript"
+        update-types: ["version-update:semver-major"]
+      # Vitest 5 breaks the RTK Query endpoint tests in apps/web; migrate in a dedicated PR.
+      - dependency-name: "vitest"
+        update-types: ["version-update:semver-major"]
+      - dependency-name: "@vitest/coverage-v8"
+        update-types: ["version-update:semver-major"]
+
+  - package-ecosystem: uv
+    directory: "/apps/api"
+    schedule:
+      interval: monthly
+      day: monday
+      time: "08:15"
+      timezone: "UTC"
+    open-pull-requests-limit: 3
+    labels:
+      - dependencies
+    commit-message:
+      prefix: chore
+      include: scope
+    groups:
+      python-all-updates:
+        update-types:
+          - major
+          - minor
+          - patch
+
+  - package-ecosystem: docker
+    directory: "/apps/api"
+    schedule:
+      interval: monthly
+      day: monday
+      time: "08:45"
+      timezone: "UTC"
+    open-pull-requests-limit: 1
+    labels:
+      - dependencies
+    commit-message:
+      prefix: chore
+      include: scope
+
+  - package-ecosystem: github-actions
+    directory: "/"
+    schedule:
+      interval: monthly
+      day: monday
+      time: "08:30"
+      timezone: "UTC"
+    open-pull-requests-limit: 2
+    labels:
+      - dependencies
+    commit-message:
+      prefix: chore
+      include: scope
+    groups:
+      github-actions-all-updates:
+        patterns:
+          - "*"
