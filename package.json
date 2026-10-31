@@ -1,0 +1,27 @@
+{
+  "name": "farp-stack-boilerplate",
+  "private": true,
+  "version": "0.1.0",
+  "scripts": {
+    "dev": "turbo run dev --parallel",
+    "build": "turbo run build",
+    "test": "turbo run test",
+    "test:coverage": "turbo run test:coverage",
+    "lint": "turbo run lint",
+    "format": "prettier --write \"**/*.{ts,tsx,json,md}\" --ignore-path .gitignore",
+    "contracts": "pnpm --filter api openapi && pnpm --filter @repo/shared generate",
+    "contracts:check": "pnpm contracts && git diff --exit-code -- packages/shared"
+  },
+  "devDependencies": {
+    "@vitest/coverage-v8": "^4.1.10",
+    "turbo": "^2.10.4",
+    "prettier": "^3.9.4",
+    "eslint": "^10.6.0",
+    "typescript": "^6.0.3"
+  },
+  "engines": {
+    "node": ">=20.0.0",
+    "pnpm": ">=9.0.0"
+  },
+  "packageManager": "pnpm@9.15.4"
+}
