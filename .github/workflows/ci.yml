@@ -36,8 +36,12 @@ jobs:
           --health-timeout 5s
           --health-retries 5
 
+    # Importing the API (OpenAPI export, Alembic) requires valid settings; there is no .env in CI.
     env:
       TEST_DATABASE_URL: postgresql://postgres:postgres@localhost:5432/taskmanager_test
+      DATABASE_URL: postgresql://postgres:postgres@localhost:5432/taskmanager_test
+      JWT_ACCESS_SECRET: ci-access-secret-at-least-32-characters
+      JWT_REFRESH_SECRET: ci-refresh-secret-at-least-32-characters
 
     steps:
       - name: Checkout
@@ -68,10 +72,6 @@ jobs:
 
       - name: Check migrations match the models
         working-directory: apps/api
-        env:
-          DATABASE_URL: ${{ env.TEST_DATABASE_URL }}
-          JWT_ACCESS_SECRET: ci-access-secret-at-least-32-characters
-          JWT_REFRESH_SECRET: ci-refresh-secret-at-least-32-characters
         run: |
           uv run alembic upgrade head
           uv run alembic check
